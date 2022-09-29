@@ -1,0 +1,7 @@
+IF,THEN
+A ^ B,C 
+A,D
+C ^ D,E
+B ^ E ^ F,G
+A ^ E,H
+D ^ E ^ H,I

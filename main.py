@@ -79,7 +79,9 @@ if __name__ == "__main__":
     while parar == False:
         print("=== Provador ===")
         print("\n[1] base.csv + fatos.csv")
-        print("[2] base2.csv + fatos.csv")
+        print("[2] base2.csv + fatos2.csv")
+        print("[3] base3.csv + fatos3.csv")
+
                 
         opcao = int(input("\nEscolha um arquivo para executar: "))
 
@@ -129,7 +131,30 @@ if __name__ == "__main__":
 
                 print("")
 
-                with open('./csv/fatos.csv', 'r') as fatos:
+                with open('./csv/fatos2.csv', 'r') as fatos:
+                    ler_fatos = csv.reader(fatos)
+                    next(ler_fatos)
+
+                    for linha in ler_fatos:
+                        verdadeiros.append(linha[0])
+                        print(linha)
+                parar = True
+            case 3:
+                print("\nSeus dados:\n")
+                with open("./csv/base3.csv", "r") as base:
+                    ler_base = csv.reader(base)
+                    next(ler_base)
+
+                    for linha in ler_base:
+                        antecedentes.append(linha[0])
+                        descendentes.append(linha[1])
+                        antecedentes_e_descendentes.append(linha[0]+linha[1])
+
+                        print(linha)
+
+                print("")
+
+                with open('./csv/fatos3.csv', 'r') as fatos:
                     ler_fatos = csv.reader(fatos)
                     next(ler_fatos)
 

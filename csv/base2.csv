@@ -1,5 +1,5 @@
 IF,THEN
-A ^ B,C 
+A ^ B,C
 A,D
 C ^ D,E
 B ^ E ^ F,G

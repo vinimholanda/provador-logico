@@ -10,47 +10,55 @@ def verifica(antecedentes, verdadeiros, antecedentes_e_descendentes, letra_usuar
 
     antecedentes = [item.replace(" ", "") for item in antecedentes]
 
-    # Atribuir valor True ou False a todas as letras do alfabeto
-    for linha in alfabeto:
-        if linha in verdadeiros:
-            letra = "True"
-            julgamento.append(letra)
-        else:
-            letra = "False"
-            julgamento.append(letra)
-    for linha in alfabeto:
-        alfabeto_julgado.append(alfabeto[indice] + " = " + julgamento[indice])
-        indice = indice + 1
-            
-    # Atualizar valores True ou False
-    for linha in antecedentes_e_descendentes:
-        senteca = True
-        for letra in linha:
-            if letra in abc:
+    rodar = 0
 
-                if linha.endswith(letra):
-                    break
-                else:
-                    x = letra + " = True"
+    while(rodar < 10):
+        indice = 0
 
-                    if x in alfabeto_julgado:
-                        continue
-                    else:
-                        senteca = False
+        # Atribuir valor True ou False a todas as letras do alfabeto
+        for linha in alfabeto:
+            if linha in verdadeiros:
+                letra = "True"
+                julgamento.append(letra)
             else:
-                continue
-        if senteca == True:
-            y = letra + " = False"
-    
-            for i in range(len(alfabeto_julgado)):
-                if alfabeto_julgado[i] == y:
-                    alfabeto_julgado[i] = letra + " = True"
+                letra = "False"
+                julgamento.append(letra)
+        for linha in alfabeto:
+            alfabeto_julgado.append(alfabeto[indice] + " = " + julgamento[indice])
+            indice = indice + 1
+                
+        # Atualizar valores True ou False
+        for linha in antecedentes_e_descendentes:
+            senteca = True
+            for letra in linha:
+                if letra in abc:
+
+                    if linha.endswith(letra):
+                        if senteca == True and letra not in verdadeiros:
+                            verdadeiros.append(letra)
+                        break
+                    else:
+                        x = letra + " = True"
+
+                        if x in alfabeto_julgado:
+                            continue
+                        else:
+                            senteca = False
+                else:
+                    continue
+            if senteca == True:
+                y = letra + " = False"
+        
+                for i in range(len(alfabeto_julgado)):
+                    if alfabeto_julgado[i] == y:
+                        alfabeto_julgado[i] = letra + " = True"
+        rodar = rodar + 1
     
     # Sentencas que podem ser geradas/provadas
     for linha in alfabeto_julgado:
-            if "True" in linha and linha:
+            if "True" in linha and linha not in pode_ser_provado:
                 pode_ser_provado.append(linha)
-            elif "False" in linha and linha:
+            elif "False" in linha and linha not in nao_pode_ser_provado:
                 nao_pode_ser_provado.append(linha)
 
     print("\nLetras que PODEM ser provadas:", end=" ")
